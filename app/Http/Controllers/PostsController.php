@@ -42,8 +42,8 @@ class PostsController extends Controller
         $user = $request->user();
 
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id,
+            'title' => 'required',
+            'description' => 'required',
         ]);
 
         $post = Post::where('id', $id)
@@ -54,7 +54,7 @@ class PostsController extends Controller
         return tap($post)->update($request->only('title', 'description'));
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request, $id)
     {
 
         $post = Post::where('id', $id)
@@ -64,8 +64,6 @@ class PostsController extends Controller
         $post->delete();
 
 
-        $posts = $request->user()->posts;
-
-        return $posts;
+        return ['deleted' => true];
     }
 }

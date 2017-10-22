@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Post extends Eloquent {
 
+    protected $fillable = ['title', 'description'];
 
     public static function saveNewPost($user, $request) {
         $post = new static;
