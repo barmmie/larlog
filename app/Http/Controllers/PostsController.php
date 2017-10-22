@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -14,7 +15,7 @@ class PostsController extends Controller
         return $posts;
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
 
         $this->validate($request, [

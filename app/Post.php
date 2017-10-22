@@ -2,7 +2,9 @@
 
 namespace App;
 
-class Post extends Model {
+use Illuminate\Database\Eloquent\Model as Eloquent;
+
+class Post extends Eloquent {
 
 
     public static function saveNewPost($user, $request) {
@@ -13,11 +15,13 @@ class Post extends Model {
         $post->description = $request['description'];
 
         $post->save();
+
+        return $post;
     }
 
 
-    public static function slugify($title) {
-        $slug = $user->id.'-'.str_slug('title', '-'). '-' . time();
+    public static function slugify($title, $id) {
+        $slug = $id.'-'.str_slug($title, '-'). '-' . time();
 
         return $slug;
     }
