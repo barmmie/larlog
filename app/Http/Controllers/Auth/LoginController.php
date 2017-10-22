@@ -69,4 +69,15 @@ class LoginController extends Controller
     {
         $this->guard()->logout();
     }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return response()->json(['message' => 'These credentials do not match our records'], 422);
+    }
 }
